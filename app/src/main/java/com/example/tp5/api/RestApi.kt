@@ -5,7 +5,7 @@ import retrofit2.http.*
 
 interface RestApi {
     @Headers("Content-Type: application/json")
-    @POST("Offres")
+    @POST("offres")
     fun addOffre(@Body offer: Offre): Call<Offre>
     @GET("Offres")
     fun getOffres():Call<List<Offre>>

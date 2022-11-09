@@ -15,12 +15,13 @@ class OffresListAdapter(private val context: Context, private val listOffers: Mu
     }
 
     override fun onBindViewHolder(holder: OffreViewHolder, position: Int) {
-        val user = listOffers[position]
-        holder.intituléF.text = user.intitulé
-        holder.specialitéF.text = user.specialité
-        holder.sociétéF.text = user.société
-        holder.nbpostesF.text = user.nbpostes.toString()
-        holder.paysF.text = user.pays
+        val offre = listOffers[position]
+        holder.codeF.text = offre.code.toString()
+        holder.intituléF.text = offre.intitulé
+        holder.specialitéF.text = offre.specialité
+        holder.sociétéF.text = offre.société
+        holder.nbpostesF.text = offre.nbpostes.toString()
+        holder.paysF.text = offre.pays
     }
 
     override fun getItemCount(): Int {

@@ -1,10 +1,15 @@
 package com.example.tp5.api
 
-class Offre {
-    val code: Long = 0
-    val intitulé: String? = null
-    val specialité: String? = null
-    val société: String? = null
-    val nbpostes = 0
-    val pays: String? = null
-}
+import com.google.gson.annotations.SerializedName
+
+data class Offre(
+    @SerializedName("code") val code: Long?,
+    @SerializedName("intitulé") var intitulé: String?,
+    @SerializedName("specialité") var specialité: String?,
+    @SerializedName("société") var société: String?,
+    @SerializedName("nbpostes") var nbpostes: Int?,
+    @SerializedName("pays") var pays: String?,
+)
+
+
+
