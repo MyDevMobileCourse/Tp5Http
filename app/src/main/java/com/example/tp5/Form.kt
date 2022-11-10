@@ -19,6 +19,8 @@ class Form : AppCompatActivity() {
     lateinit var société: TextInputLayout
     lateinit var pays: TextInputLayout
     lateinit var nbpostes: TextInputLayout
+    lateinit var logo: TextInputLayout
+    var code: Int? = null
     lateinit var submit: Button
     lateinit var cancel: Button
 
@@ -48,8 +50,20 @@ class Form : AppCompatActivity() {
         société = findViewById(R.id.société)
         pays = findViewById(R.id.pays)
         nbpostes = findViewById(R.id.nbpostes)
+        logo = findViewById(R.id.logo)
+        if(intent.hasExtra("code")) {
+            code = intent.getIntExtra("code",0)
+            intitue.editText?.setText(intent.getStringExtra("intitulé"))
+            specialité.editText?.setText(intent.getStringExtra("specialité"))
+            société.editText?.setText(intent.getStringExtra("société"))
+            pays.editText?.setText(intent.getStringExtra("pays"))
 
-        arrayListOf(intitue, specialité, société, pays, nbpostes).forEach {
+            nbpostes.editText?.setText(
+                intent.getIntExtra("nbpostes",0).toString()
+            )
+            logo.editText?.setText(intent.getStringExtra("logo"))
+        }
+        arrayListOf(intitue, specialité, société, pays, nbpostes,logo).forEach {
             it.editText?.setOnFocusChangeListener { v, hasFocus ->
                 if (!hasFocus) {
                     validate(it)
@@ -97,9 +111,10 @@ class Form : AppCompatActivity() {
     }
 
     fun clearAll() {
-        arrayListOf(intitue, specialité, société, pays, nbpostes).forEach {
+        arrayListOf(intitue, specialité, société, pays, nbpostes,logo).forEach {
             it.editText?.setText("")
         }
+        code = null
     }
 
 
@@ -127,13 +142,26 @@ class Form : AppCompatActivity() {
         val societe = société.editText?.text.toString()
         val pays = pays.editText?.text.toString()
         val nbpostes = nbpostes.editText?.text.toString().toInt()
+        val logo = logo.editText?.text.toString()
+        if (code != null){
+            val call = RestApiService().updateOffre(code!!, Offre(null,intitulé, specialité, societe, nbpostes,pays,logo)){
+                if (it != null){
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    Snackbar.make(submit, "Erreur", Snackbar.LENGTH_LONG).show()
+                }
+            }
+
+        }else{
         val offre = Offre(
             code = 0,
             intitulé = intitulé,
             specialité = specialité,
             société = societe,
             nbpostes = nbpostes,
-            pays = pays
+            pays = pays,
+            logo = logo
         )
         val apiService = RestApiService()
         apiService.addOffre(offre) {
@@ -153,7 +181,7 @@ class Form : AppCompatActivity() {
                 snackbar.show()
             }
         }
-
+        }
     }
 
 

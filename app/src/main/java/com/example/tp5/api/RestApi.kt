@@ -11,4 +11,6 @@ interface RestApi {
     fun getOffres():Call<List<Offre>>
     @DELETE("Offres/{id}")
     fun deleteOffre(@Path("id") id: Int): Call<Boolean>
+    @PUT("Offres/{id}")
+    fun updateOffre(@Path("id") id: Int, @Body offer: Offre): Call<Offre>
 }

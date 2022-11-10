@@ -9,6 +9,7 @@ data class Offre(
     @SerializedName("société") var société: String?,
     @SerializedName("nbpostes") var nbpostes: Int?,
     @SerializedName("pays") var pays: String?,
+    @SerializedName("logo") var logo: String?
 )
 
 

@@ -6,12 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="6dp"
+    android:clickable="true"
     app:cardElevation="6dp"
     app:cardUseCompatPadding="true">
 
     <HorizontalScrollView
+        android:id="@+id/user_item_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,58 +92,58 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
 
-                    <LinearLayout
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:id="@+id/labelSocieté"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding="12dp">
+                        android:text="Societé :"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/labelSocieté"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Societé :"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/societéF"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="123" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
+                    <TextView
+                        android:id="@+id/societéF"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:padding="12dp">
-
-                        <TextView
-                            android:id="@+id/labelPays"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pays :"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/paysF"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Offre" />
-
-
-                    </LinearLayout>
+                        android:text="123" />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:id="@+id/labelPays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pays :"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/paysF"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Offre" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -164,7 +168,23 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="12dp">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/logo"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        />
+
+            </LinearLayout>
+
         </LinearLayout>
+
 
     </HorizontalScrollView>
 

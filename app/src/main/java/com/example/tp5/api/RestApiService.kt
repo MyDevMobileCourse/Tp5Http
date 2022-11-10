@@ -31,4 +31,21 @@ class RestApiService {
         val retrofit = ServiceBuilder.buildService(RestApi::class.java)
         return retrofit.deleteOffre(id);
     }
+
+    fun updateOffre(id: Int, offre: Offre, onResult: (Offre?) -> Unit) {
+        val retrofit = ServiceBuilder.buildService(RestApi::class.java)
+        retrofit.updateOffre(id, offre).enqueue(
+            object : Callback<Offre> {
+                override fun onFailure(call: Call<Offre>, t: Throwable) {
+                    println("It went bad")
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<Offre>, response: Response<Offre>) {
+                    val addedUser = response.body()
+                    println("It went good")
+                    onResult(addedUser)
+                }
+            }
+        )
+    }
 }
